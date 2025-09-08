@@ -12,7 +12,7 @@ public class ParkingBoy {
         return parkingLot.parking(car);
     }
 
-/*    public Car helpFetchCar(Ticket ticket) {
+    public Car helpFetchCar(Ticket ticket) {
         return parkingLot.fetch(ticket);
-    }*/
+    }
 }
