@@ -16,4 +16,15 @@ public class ParkingLotManagerTest {
         Ticket ticket = manager.helpParkCar(car);
         assertEquals(lot1, ticket.parkingLot());
     }
+
+    @Test
+    public void should_park_in_second_lot_when_first_is_full() {
+        ParkingLot lot1 = new ParkingLot(0);
+        ParkingLot lot2 = new ParkingLot(1);
+        ParkingLotManager manager = new ParkingLotManager(Arrays.asList(lot1, lot2));
+        Car car = new Car("car2");
+
+        Ticket ticket = manager.helpParkCar(car);
+        assertEquals(lot2, ticket.parkingLot());
+    }
 }
