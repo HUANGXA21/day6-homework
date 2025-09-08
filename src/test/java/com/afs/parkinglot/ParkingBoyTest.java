@@ -67,4 +67,15 @@ public class ParkingBoyTest {
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 
+    @Test
+    public void should_throw_exception_when_parking_boy_helps_park_in_full_lot() {
+        ParkingLot fullParkingLot = new ParkingLot(0);
+        ParkingBoy parkingBoy = new ParkingBoy(fullParkingLot);
+        Car car = new Car("parking number 1");
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class,
+                () -> parkingBoy.helpParkCar(car));
+        assertEquals("No available position.", exception.getMessage());
+    }
+
 }
