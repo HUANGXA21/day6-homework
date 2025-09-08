@@ -57,4 +57,19 @@ public class ParkingLotManagerTest {
         assertEquals(car2, carResult);
     }
 
+    @Test
+    public void should_throw_exception_with_invalid_ticket() {
+        ParkingLot lot1 = new ParkingLot(1);
+        ParkingLot lot2 = new ParkingLot(1);
+        ParkingLotManager manager = new ParkingLotManager(Arrays.asList(lot1, lot2));
+        manager.helpParkCar(new Car("car1"));
+        Ticket invalidTicket = new Ticket(new Car("invalid"), 1, lot1);
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> manager.helpFetchCar(invalidTicket)
+        );
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    }
+
 }
