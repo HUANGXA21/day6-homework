@@ -43,4 +43,16 @@ public class ParkingBoyTest {
         assertEquals(car2, fetchedCar2);
     }
 
+    @Test
+    public void should_throw_exception_when_parking_boy_helps_fetch_with_invalid_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        parkingBoy.helpParkCar(new Car("parking number 1"));
+        Ticket invalidTicket = new Ticket(new Car("wrong car"), 1, parkingLot);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> parkingBoy.helpFetchCar(invalidTicket));
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    }
+
 }
