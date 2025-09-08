@@ -8,6 +8,7 @@ public class ParkingLotManager {
     public ParkingLotManager(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
+
     public Ticket helpParkCar(Car car) {
         for (ParkingLot lot : parkingLots) {
             try {
