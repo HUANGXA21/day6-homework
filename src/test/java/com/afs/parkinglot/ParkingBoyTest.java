@@ -27,4 +27,20 @@ public class ParkingBoyTest {
         Car fetchedCar = parkingBoy.helpFetchCar(validTicket);
         assertEquals(car, fetchedCar);
     }
+
+    @Test
+    public void should_return_all_car_when_parking_boy_helps_fetch_with_two_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car1 = new Car("parking number 1");
+        Car car2 = new Car("parking number 2");
+        Ticket validTicket1 = parkingBoy.helpParkCar(car1);
+        Ticket validTicket2 = parkingBoy.helpParkCar(car2);
+
+        Car fetchedCar = parkingBoy.helpFetchCar(validTicket1);
+        Car fetchedCar2 = parkingBoy.helpFetchCar(validTicket2);
+        assertEquals(car1, fetchedCar);
+        assertEquals(car2, fetchedCar2);
+    }
+
 }
