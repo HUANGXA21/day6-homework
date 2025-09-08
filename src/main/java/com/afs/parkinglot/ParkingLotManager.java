@@ -19,4 +19,15 @@ public class ParkingLotManager {
         throw new IllegalStateException("No available position in all parking lots.");
     }
 
+    public Car helpFetchCar(Ticket ticket) {
+        for (ParkingLot lot : parkingLots) {
+            try {
+                return lot.fetch(ticket);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+        }
+        throw new IllegalArgumentException("Unrecognized parking ticket.");
+    }
+
 }

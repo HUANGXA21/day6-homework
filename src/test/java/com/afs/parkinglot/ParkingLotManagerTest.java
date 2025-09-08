@@ -1,7 +1,9 @@
 package com.afs.parkinglot;
 
 import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotManagerTest {
@@ -41,4 +43,18 @@ public class ParkingLotManagerTest {
         );
         assertEquals("No available position in all parking lots.", exception.getMessage());
     }
+
+    @Test
+    public void should_fetch_from_lot() {
+        ParkingLot lot1 = new ParkingLot(1);
+        ParkingLot lot2 = new ParkingLot(1);
+        ParkingLotManager manager = new ParkingLotManager(Arrays.asList(lot1, lot2));
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        manager.helpParkCar(car1);
+        Ticket ticket = manager.helpParkCar(car2);
+        Car carResult = manager.helpFetchCar(ticket);
+        assertEquals(car2, carResult);
+    }
+
 }
