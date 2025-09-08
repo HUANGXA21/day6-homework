@@ -8,4 +8,15 @@ public class ParkingLotManager {
     public ParkingLotManager(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
+    public Ticket helpParkCar(Car car) {
+        for (ParkingLot lot : parkingLots) {
+            try {
+                return lot.parking(car);
+            } catch (IllegalStateException e) {
+                continue;
+            }
+        }
+        throw new IllegalStateException("No available position in all parking lots.");
+    }
+
 }
